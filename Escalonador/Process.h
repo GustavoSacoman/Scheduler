@@ -4,9 +4,10 @@ class Process
 private:
 
 	const int pid {};
-	int runtime {};
-	int priority {};
-	
+	int runtime_initial {};
+	int runtime_final {};
+	enum criticaly { non_critical, medium, critical, very_critical};
+		
 
 };
 
