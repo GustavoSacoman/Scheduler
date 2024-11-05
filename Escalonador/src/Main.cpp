@@ -30,11 +30,8 @@ int main() {
 			low_process.push_back(temp);
 	}
 
-	std::thread creating_queue_low(creating_queue, std::ref(low_process));
-	std::thread creating_queue_high(creating_queue, std::ref(high_process));
-	creating_queue_low.join();
-	creating_queue_high.join();
-
+	auto queue_process = creating_queue(low_process);
+	auto queue_process_high = creating_queue(high_process);
 
 
 	

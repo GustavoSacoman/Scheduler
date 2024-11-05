@@ -9,6 +9,9 @@ struct ComparePriority
 
 	bool operator()(const Process& p1, const Process& p2)
 	{
+		if (p1.runtime_initial > 0) 
+			return p1.priority > p2.priority;
+		
 		return p1.priority < p2.priority;
 	}
 
