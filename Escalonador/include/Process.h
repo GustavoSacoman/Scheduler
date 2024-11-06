@@ -1,18 +1,7 @@
 #pragma once
-
 #include <iostream>
 #include <vector>
 #include <thread>
-
-struct ComparePriority
-{
-
-	bool operator()(const Process& p1, const Process& p2)
-	{
-		return p1.priority < p2.priority;
-	}
-
-};
 
 enum PriorityClass
 {
@@ -35,9 +24,22 @@ struct Process
 	Process(int id, PriorityClass priority, int initial, int runtime_final, char state) :
 		pid(id), priority(priority), state_process(state),
 		runtime_initial(initial), runtime_final(runtime_final) {};
-
-
 };
+
+
+
+struct ComparePriority
+{
+	bool operator()(const Process& p1, const Process& p2) const
+	{
+		if (p1.runtime_initial > 0) 
+			return p1.priority > p2.priority;
+		
+		return p1.priority < p2.priority;
+	}
+};
+
+
 
 
 std::vector<Process> priority_process_running(std::vector<Process> list_process);

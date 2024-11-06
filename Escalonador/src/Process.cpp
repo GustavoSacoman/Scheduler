@@ -4,6 +4,7 @@
 #include "../include/Process.h"
 #include <mutex>
 #include <atomic>
+#include "../include/Dispatcher.h"
 
 std::atomic<bool> flag(true);
 std::mutex mtx;
