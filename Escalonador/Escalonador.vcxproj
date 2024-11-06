@@ -108,8 +108,9 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>user32.lib;gdi32.lib;kernel32.lib;comdlg32.lib;winmm.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -129,13 +130,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CreateObjectWindow.cpp" />
     <ClCompile Include="src\Dispatcher.cpp" />
-    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\CreateProcess.cpp" />
     <ClCompile Include="src\Process.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\CreateObjectWindow.h" />
     <ClInclude Include="include\Dispatcher.h" />
     <ClInclude Include="include\Process.h" />
+    <ClInclude Include="include\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

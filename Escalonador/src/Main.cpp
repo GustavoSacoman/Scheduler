@@ -1,54 +1,38 @@
-#include <iostream>
-#include "Process.h"
-#include "../include/Process.h"
-#include <atomic>
-#include "../include/Dispatcher.h"
+
+#include <Windows.h>
+#include <windowsx.h>
+#include "../include/Window.h"
+
+int WindowWidth{ 960 };
+int WindowHeight{ 540 };
+bool fullScreen{ false };
 
 
-//Priority 1 to 10
-int main() {
 
-	std::vector<Process> low_process;
-	std::vector<Process> high_process;
-	std::vector<Process> allList;
-	Process* p = new Process(5555, High, 0, 10, 'R');
-	Process* g = new Process(2222, Idle, 0, 5, 'R');
-	Process* h = new Process(3333, Normal, 0, 25, 'R');
-	Process* i = new Process(1000, Real_time, 0, 3, 'R');
-	Process* l = new Process(7777, Below_normal, 0, 3, 'R');
+int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
+ {
+	int windowStyle = WS_SYSMENU| WS_OVERLAPPED;
+	Window* w		= new Window(960,450,L"Teste Window", windowStyle,hInstance);
+	
+	w->windowCreate();
+	w->showWindow(nCmdShow);
+	
 
-	allList.push_back(*p);
-	allList.push_back(*h);
-	allList.push_back(*i);
-	allList.push_back(*g);
-	allList.push_back(*l);
 
-	for (auto& temp : allList) {
-		if (temp.priority >= 3)
-			high_process.push_back(temp);
-		else
-			low_process.push_back(temp);
+	MSG msg{};
+	while (GetMessage(&msg, NULL, 0, 0)) {
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
 	}
 
-	auto queue_process = creating_queue(low_process);
-	auto queue_process_high = creating_queue(high_process);
-
-
-	
-	std::thread running_low_process(priority_process_running, std::ref(low_process));
-	
-	std::thread interrupt_low(ready_process);
-	interrupt_low.join();
-	running_low_process.join();
-
+	return int(msg.wParam);
 	
 
-
-	delete p;
-	delete g;
-	delete h;
-	delete i;
-	delete l;
-
-
+	
 }
+
+
+
+
+
+
