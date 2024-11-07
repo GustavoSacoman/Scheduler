@@ -136,12 +136,14 @@
     <ClCompile Include="src\Process.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Winproc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CreateObjectWindow.h" />
     <ClInclude Include="include\Dispatcher.h" />
     <ClInclude Include="include\Process.h" />
     <ClInclude Include="include\Window.h" />
+    <ClInclude Include="include\Winproc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
