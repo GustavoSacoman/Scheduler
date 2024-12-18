@@ -3,4 +3,5 @@
 #include <windowsx.h>
 
 LRESULT CALLBACK WinProcMain(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+LRESULT CALLBACK testWinproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void absorveMain(HWND T);

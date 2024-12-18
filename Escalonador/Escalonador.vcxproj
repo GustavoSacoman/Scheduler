@@ -130,13 +130,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CreateObjectWindow.cpp" />
+    <ClCompile Include="src\View\ListViewProcess\ListView.cpp" />
+    <ClCompile Include="src\View\Windows\CreateObjectWindow.cpp" />
     <ClCompile Include="src\Dispatcher.cpp" />
     <ClCompile Include="src\CreateProcess.cpp" />
     <ClCompile Include="src\Process.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="Window.cpp" />
-    <ClCompile Include="Winproc.cpp" />
+    <ClCompile Include="src\View\Windows\Window.cpp" />
+    <ClCompile Include="src\Controller\Winproc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CreateObjectWindow.h" />
@@ -144,6 +145,7 @@
     <ClInclude Include="include\Process.h" />
     <ClInclude Include="include\Window.h" />
     <ClInclude Include="include\Winproc.h" />
+    <ClInclude Include="include\ListView.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
