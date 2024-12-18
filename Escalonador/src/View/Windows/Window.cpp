@@ -18,8 +18,39 @@ Window::~Window()
 {
 }
 
-void Window::windowCreate()
+void Window::CreatingWindowClass(LPCWSTR createName,DWORD style, WNDPROC win)
 {
+
+	if (!win) {
+		MessageBox(NULL, L"Window procedure is NULL!", L"Error", MB_OK | MB_ICONERROR);
+		exit(0);
+	}
+	if (GetClassInfo(hInstance, createName, &windowClass)) {
+		// Class is already registered, no need to register again
+		return;
+	}
+
+	windowClass.style = style;
+	windowClass.lpfnWndProc = win;
+	windowClass.cbClsExtra = 0;
+	windowClass.cbWndExtra = 0;
+	windowClass.hInstance = hInstance;
+	windowClass.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
+	windowClass.hCursor = LoadCursor(nullptr, IDC_ARROW);
+	windowClass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	windowClass.lpszMenuName = nullptr;
+	windowClass.lpszClassName = createName;
+
+	if (!RegisterClass(&windowClass)) {
+		DWORD error = GetLastError();
+		MessageBox(NULL, L"RegisterClass failed", L"Error", MB_OK | MB_ICONERROR);
+		exit(0);
+	}
+}
+
+void Window::windowCreate(std::wstring name)
+{	
+	className = name;
 	try {
 			initWindow();
 			fullScreamWindow();
@@ -34,7 +65,7 @@ void Window::windowCreate()
 void Window::initWindow() {
 
 	hwnd = CreateWindowEx(NULL,		// extended style
-		L"WindowClass",				// class name
+		className.c_str(),			// class name of window class
 		windowName.c_str(),			// window name
 		windowStyle,				//window style
 		CW_USEDEFAULT,				// x
